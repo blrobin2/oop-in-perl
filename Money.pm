@@ -6,11 +6,6 @@ package Money
     use App::Types;
     use Scalar::Util qw(looks_like_number);
 
-    use overload '""' => sub {
-        my $self = shift;
-        $self->amount . ' ' . $self->currency;
-    };
-
     has 'amount',
         is => 'ro',
         isa => 'Int',
