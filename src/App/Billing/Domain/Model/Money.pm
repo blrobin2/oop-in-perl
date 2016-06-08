@@ -3,8 +3,9 @@ use Modern::Perl;
 package App::Billing::Domain::Model::Money
 {
     use Moose;
-    use App::Types;
     use Scalar::Util qw(looks_like_number);
+
+    use App::Types;
     use aliased 'App::Billing::Domain::Model::Currency';
     use aliased 'App::Billing::Domain::Model::Money';
 

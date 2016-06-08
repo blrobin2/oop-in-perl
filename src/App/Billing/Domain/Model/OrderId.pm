@@ -15,7 +15,7 @@ package App::Billing::Domain::Model::OrderId
         my $order_id = $args{order_id};
 
         die "Argument order_id must be of type 'Order Id'"
-            unless $order_id->isa('OrderId');
+            unless $order_id->isa('App::Billing::Domain::Model::OrderId');
 
         $self->id eq $order_id->id;
     }

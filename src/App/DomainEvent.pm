@@ -4,5 +4,5 @@ package App::DomainEvent
 {
 	use Moose::Role;
 
-	requires 'occurredOn';
+	requires 'occurred_on';
 }
