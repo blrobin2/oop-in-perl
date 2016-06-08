@@ -1,5 +1,4 @@
-use strict;
-use warnings;
+use Modern::Perl;
 
 use Test::More tests => 3;
 
@@ -19,18 +18,10 @@ ok($money->equals(money => $copiedMoney),
 
 ####
 
-$money->add(money => Money->new(
-    amount => 20,
-    currency => Currency->new(iso_code => 'USD')
-));
-
-is(100, $money->amount, 'Original money should not be modified by addition');
-
-####
-
 my $newMoney = $money->add(money => Money->new(
     amount => 20,
     currency => Currency->new(iso_code => 'USD')
 ));
 
+is(100, $money->amount, 'Original money should not be modified by addition');
 is(120, $newMoney->amount, 'Money should be addable');
