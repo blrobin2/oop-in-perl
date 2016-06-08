@@ -39,7 +39,7 @@ package App::Billing::Domain::Model::Money
         my $currency = $args{currency};
 
         die "Argument currency must be of type 'Currency'"
-            unless $currency->isa('Currency');
+            unless $currency->isa('App::Billing::Domain::Model::Currency');
 
         Money->new(
             amount => 0,

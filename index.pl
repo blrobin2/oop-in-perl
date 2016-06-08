@@ -1,41 +1,36 @@
 use Modern::Perl;
-use Currency;
-use Money;
 use Try::Tiny;
+use Data::Dumper;
 use Carp 'carp';
+
+use lib 'src';
+
+use aliased "App::Billing::Domain::Model::Money";
+use aliased "App::Billing::Domain::Model::Currency";
 
 my $currency = Currency->new(iso_code => 'USD');
 my $otherCurrency = Currency->new(iso_code => 'USD');
 
 say "They're equal!" if $currency->equals(currency => $otherCurrency);
 
-say $currency;
-
 my $money = Money->new(
     amount => 100,
     currency => Currency->new(iso_code => 'USD')
 );
 
-#say $money;
+try
+{
+    my $newMoney = Money->from(money => $money);
 
-try {
-    my $newMoney = Money->from (money => $money);
-    say $newMoney;
+    my $diffMoney = Money->of(currency => $currency);
 
-    my $diffMoney = Money->of (currency => $currency);
+    my $moreMoney = $diffMoney->increaseBy(amount => 42);
 
-    say $diffMoney;
+    say "Equal!" if $money->equals(money => $newMoney);
 
-    my $moreMoney = $diffMoney->increaseBy (amount => 42);
-
-    say $moreMoney;
-
-    say $money->equals (money => $newMoney);
-
-} catch {
+} catch 
+{
     my $e = $_;
 
     carp "$e\n";
 };
-
-say $money;
